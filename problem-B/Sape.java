@@ -1,12 +1,19 @@
-public class Shape {
-    protected String color = "red";
-    protected Boolean filled = true;
-
+public class Shape{
+    private String color = "red";
+    private boolean filled = true;
     public Shape(){
 
     }
-    public Shape(String color, Boolean filled){
+    public Shape(String color, boolean filled){
+        this.color=color;
+        this.filled=filled;
+    }
+
+    public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setFilled(boolean filled) {
         this.filled = filled;
     }
 
@@ -14,20 +21,12 @@ public class Shape {
         return color;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public boolean isFilled() {
+        return filled;
     }
-    public boolean isFilled(){
-        return false;
-    }
-
-    public void setFilled(Boolean filled) {
-        this.filled = filled;
-    }
-
     @Override
-    public String toString() {
-        return "Shape[color = " + filled;
+    public String toString(){
+        return "Shape color= " + getColor() + "filled = " + isFilled();
     }
 }
 class Circle extends Shape{
@@ -36,12 +35,12 @@ class Circle extends Shape{
 
     }
     public Circle(double radius){
-        this.radius = radius;
+        this.radius=radius;
     }
-    public Circle(double radius,String color, boolean filled){
-        this.radius = radius;
-        this.color = color;
-        this.filled = filled;
+    public Circle(double radius, String color, boolean filled){
+        this.radius=radius;
+        super.setColor(color);
+        super.setFilled(filled);
     }
 
     public double getRadius() {
@@ -52,95 +51,92 @@ class Circle extends Shape{
         this.radius = radius;
     }
     public double getArea(){
-        return radius * radius * Math.PI;
+        return Math.PI*getRadius()*getRadius();
     }
     public double getPerimeter(){
-        return 2 * radius * Math.PI;
+        return 2*Math.PI*getRadius();
     }
-
     @Override
-    public String toString() {
-        return "Circle[Shape[color = " + super.color + ", " + super.filled + "]," + radius + "]";
+    public String toString(){
+        return "Circle[Shape[color = " + getColor() + " filled = " + isFilled() +" ] radius = " + getRadius();
     }
-}
 
-class Rectangle extends Shape{
-    protected double width = 1.0;
-    protected double length = 1.0;
+}
+ class Rectangle extends Shape{
+    private double width = 1.0;
+    private double length = 1.0;
 
     public Rectangle(){
 
     }
-    public Rectangle(double width, double length, String color,  boolean filled){
-        this.width = width;
-        this.length = length;
-        this.filled = filled;
-        this.color = color;
-    }
+    public Rectangle(double width, double length){
+        this.width=width;
+        this.length=length;
 
-    public double getWidth() {
-        return width;
+    }
+    public Rectangle(double width, double length, String color, boolean filled){
+        this.width=width;
+        this.length=length;
+        super.setColor(color);
+        super.setFilled(filled);
     }
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
     }
 
     public double getLength() {
         return length;
     }
 
-    public void setLength(double length) {
-        this.length = length;
+    public double getWidth() {
+        return width;
     }
     public double getArea(){
-        return length * width;
-    }
-    public double getPerimeter(){
-        return 2 * (length + width);
+        return getLength()*getWidth();
     }
 
+    public double getPerimeter(){
+        return (getLength()+getWidth())*2;
+    }
     @Override
-    public String toString() {
-        return "Rectangle[Shape[color = " + color + ", " +  filled + " " + width + " " + length;
+    public String toString(){
+        return "Rectangle[Shape[color = " + getColor() + ", filled = " + isFilled() + " ] width = " + getWidth() + " length  = " + getLength() + " ]";
     }
 }
-class Square extends Rectangle{
+class Square extends Rectangle {
     public Square(){
 
     }
     public Square(double side){
-        super.length=side;
-        super.width=side;
+        super.setLength(side);
+        super.setWidth(side);
     }
     public Square(double side, String color, boolean filled){
-        super.length=side;
-        super.width=side;
-        super.color = color;
-        this.filled = filled;
+        super.setLength(side);
+        super.setWidth(side);
+        super.setColor(color);
+        super.setFilled(filled);
+    }
+
+    @Override
+    public void setLength(double side) {
+        super.setLength(side);
     }
 
     public double getSide() {
-        return super.length;
-    }
-
-    public void setSide(double side) {
-        super.length=side;
-        super.width=side;
+        return getLength();
     }
 
     @Override
-    public void setWidth(double width) {
-        System.out.println("The Length and width shall be set to the same value");
+    public void setWidth(double side) {
+        super.setWidth(side);
     }
-
-    @Override
-    public void setLength(double length) {
-        System.out.println("The Length and width shall be set to the same value");
-    }
-
-    @Override
-    public String toString() {
-        return "Square[Rectangle[Shape[color = " + color + " " + filled + " " + width + " " + length;
+    public String toString(){
+        return "Square[Rectangle[Shape[color = " + getColor() + ", filled = " +isFilled()+" ], width = " + getWidth() + ", length = " +getLength()+ " ]]";
     }
 }
