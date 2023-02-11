@@ -1,19 +1,13 @@
-public class Shape{
+public class Shape {
     private String color = "red";
     private boolean filled = true;
-    public Shape(){
+    public Shape()
+    {
 
     }
-    public Shape(String color, boolean filled){
-        this.color=color;
-        this.filled=filled;
-    }
-
-    public void setColor(String color) {
+    public Shape(String color, boolean filled)
+    {
         this.color = color;
-    }
-
-    public void setFilled(boolean filled) {
         this.filled = filled;
     }
 
@@ -21,11 +15,20 @@ public class Shape{
         return color;
     }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     public boolean isFilled() {
         return filled;
     }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+
     @Override
-    public String toString(){
-        return "Shape color= " + getColor() + "filled = " + isFilled();
+    public String toString() {
+        return String.format("Shape[%s], color = %s, filled = %s]",super.toString(), color, filled ? "filled":"not filled");
     }
 }
