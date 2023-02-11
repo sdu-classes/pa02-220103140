@@ -1,46 +1,51 @@
 public class Rectangle extends Shape{
-    private double width = 1.0;
-    private double length = 1.0;
+    private double width = 1.0f;
+    private double length = 1.0f;
 
-    public Rectangle(){
+    public Rectangle()
+    {}
 
+    public Rectangle(double width, double length)
+    {
+        this.length = length;
+        this.width = width;
     }
-    public Rectangle(double width, double length){
-        this.width=width;
-        this.length=length;
 
+    public Rectangle(double width, double length, String color, boolean filled)
+    {
+        super(color, filled);
+        this.width = width;
+        this.length = length;
     }
-    public Rectangle(double width, double length, String color, boolean filled){
-        this.width=width;
-        this.length=length;
-        super.setColor(color);
-        super.setFilled(filled);
+
+    public double getWidth() {
+        return width;
     }
 
     public void setWidth(double width) {
         this.width = width;
     }
 
+    double getLength() {
+        return length;
+    }
+
     public void setLength(double length) {
         this.length = length;
     }
 
-    public double getLength() {
-        return length;
+    public double getArea()
+    {
+        return length * width;
     }
 
-    public double getWidth() {
-        return width;
-    }
-    public double getArea(){
-        return getLength()*getWidth();
+    public double getPerimeter()
+    {
+        return 2 * (length * width);
     }
 
-    public double getPerimeter(){
-        return (getLength()+getWidth())*2;
-    }
-    @Override
-    public String toString(){
-        return "Rectangle[Shape[color = " + getColor() + ", filled = " + isFilled() + " ] width = " + getWidth() + " length  = " + getLength() + " ]";
+    public String toString()
+    {
+        return "Rectangle[" + super.toString() + ", width = " + width + ",length = " + length + "]";
     }
 }
