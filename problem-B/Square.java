@@ -1,32 +1,37 @@
-public class Square extends Rectangle {
-    public Square(){
+public class Square extends Rectangle
+{
+    public Square()
+    {
 
     }
-    public Square(double side){
-        super.setLength(side);
-        super.setWidth(side);
-    }
-    public Square(double side, String color, boolean filled){
-        super.setLength(side);
-        super.setWidth(side);
-        super.setColor(color);
-        super.setFilled(filled);
+
+    public Square(double side)
+    {
+        super(side, side);
     }
 
-    @Override
-    public void setLength(double side) {
-        super.setLength(side);
+    public Square(double side, String color, boolean filled)
+    {
+        super(side, side, color, filled);
     }
 
-    public double getSide() {
-        return getLength();
+    public double getSide()
+    {
+        return super.getLength();
     }
 
-    @Override
-    public void setWidth(double side) {
-        super.setWidth(side);
+    public void setWidth(double wid)
+    {
+        super.setLength(wid);
     }
-    public String toString(){
-        return "Square[Rectangle[Shape[color = " + getColor() + ", filled = " +isFilled()+" ], width = " + getWidth() + ", length = " +getLength()+ " ]]";
+
+    public void setLength(double len)
+    {
+        super.setWidth(len);
+    }
+
+    public String toString()
+    {
+        return "Square[" + super.toString() + "]";
     }
 }
